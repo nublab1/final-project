@@ -93,29 +93,40 @@
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="{% url 'index' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
-                    <a href="{% url 'about' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
-
-                    <a href="{% url 'services' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}">Services</a>
-                    <a href="package.html" class="nav-item nav-link">Packages</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="destination.html" class="dropdown-item">Destination</a>
-                            <a href="booking.html" class="dropdown-item">Booking</a>
-                            <a href="team.html" class="dropdown-item">Travel Guides</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
-                </div>
-                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">
-                <i class="fa fa-user"></i>
-                </a>
-
+    <div class="navbar-nav ms-auto py-0">
+        <a href="{% url 'index' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
+        <a href="{% url 'about' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+        <a href="{% url 'services' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}">Services</a>
+        <a href="{% url 'packages' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'packages' %}active{% endif %}">Packages</a>
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+            <div class="dropdown-menu m-0">
+                <a href="{% url 'team' %}" class="dropdown-item">Travel Guides</a>
+                <a href="{% url 'testimonials' %}" class="dropdown-item">Testimonial</a>
+                <a href="{% url 'contact' %}" class="dropdown-item">Contact</a>
+                <a href="{% url 'error_404' %}" class="dropdown-item">404 Page</a>
             </div>
+        </div>
+        <a href="{% url 'contact' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+    </div>
+
+    {% if user.is_authenticated %}
+        {% if user.user_type == 'traveler' or user.user_type == 'tourguide' %}
+            <li class="nav-item nav-link">
+                <a href="" class="btn btn-primary rounded-pill py-2 px-4">
+                    <i class="fa fa-user"></i> Profile
+                </a>
+            </li>
+        {% endif %}
+    {% else %}
+        <li class="nav-item nav-link">
+            <a href="{% url 'frontend_login' %}" class="btn btn-primary rounded-pill py-2 px-4">
+                <i class="fa fa-sign-in-alt"></i> Login
+            </a>
+        </li>
+    {% endif %}
+</div>
+
         </nav>
     </div>
     <!-- Navbar & Hero End -->

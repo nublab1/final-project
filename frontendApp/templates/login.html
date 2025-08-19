@@ -43,7 +43,7 @@
                         <span class="bg-light px-3 text-muted">Or continue with</span>
                     </div>
 
-                    <form action="/login/" method="POST">
+                    <form action="" method="POST">
                         {% csrf_token %}
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
@@ -82,7 +82,7 @@
         <div class="bg-primary text-white rounded p-5 shadow">
             <h2 class="mb-3">Want to Share Your Knowledge?</h2>
             <p class="mb-4">Join us as a professional guide and help travelers explore the world with your expertise.</p>
-            <a href="{% url 'guide_request' %}" class="btn btn-light btn-lg rounded-pill px-4">
+            <a href="{% url 'become_guide' %}" class="btn btn-light btn-lg rounded-pill px-4">
                 Become a Guide
             </a>
         </div>
